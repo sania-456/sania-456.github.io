@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Sania Treasa Cherian - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* Color Palette */
+        :root {
+            --dark-blue: #001F3F;
+            --dusty-blue: #708090;
+            --light-pinky-peach: #FFE4B5;
+            --grey: #A9A9A9;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--dusty-blue) 50%, var(--light-pinky-peach) 100%);
+            color: var(--dark-blue);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Subtle Cloudy Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: cloudFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes cloudFloat {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(-10px) translateY(-5px); }
+        }
+
+        /* Custom Cursor */
+        body {
+            cursor: none;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--light-pinky-peach);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.05s ease;
+            opacity: 0.7;
+            background: rgba(255, 228, 181, 0.3);
+            mix-blend-mode: difference;
+        }
+
+        .cursor-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background: var(--dark-blue);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.8;
+        }
+
+        /* Glide-in Animation for Fonts */
+        .glide-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: glideIn 1s ease-out forwards;
+        }
+
+        @keyframes glideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 5%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--light-pinky-peach);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+            background-image: url('https://via.placeholder.com/150/001F3F/000000?text=Batman'); /* Dummy Batman placeholder; replace with actual image URL */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .profile-text {
+            flex: 1;
+            margin-left: 2rem;
+            text-align: right;
+        }
+
+        .profile-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+            glide-in: true;
+        }
+
+        .profile-degree {
+            font-size: 1.2rem;
+            color: var(--dusty-blue);
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .profile-caption {
+            font-size: 1rem;
+            color: var(--grey);
+            line-height: 1.5;
+            max-width: 400px;
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem 5%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        section h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            text-align: center;
+            margin-bottom: 2rem;
+            glide-in: true;
+        }
+
+        /* About Me Section */
+        #about {
+            text-align: center;
+        }
+
+        #about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-blue);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Skills Section - Floating Boxes */
+        #skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .skill-box {
+            background: linear-gradient(135deg, var(--dusty-blue), var(--light-pinky-peach));
+            color: var(--dark-blue);
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+            min-width: 150px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .skill-box:nth-child(even) {
+            animation-delay: 1s;
+        }
+
+        .skill-box:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+
+        #contact p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+
+        .contact-link {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--light-pinky-peach);
+            color: var(--dark-blue);
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .contact-link:hover {
+            background: var(--dusty-blue);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-text {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+
+            .profile-name {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 1rem 3%;
+            }
+
+            #skills {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor Dot -->
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="profile-image"></div>
+        <div class="profile-text glide-in">
+            <h1 class="profile-name"> Sania Treasa Cherian</h1>
+            <p class="profile-degree">Blending code with design</p>
+        </div>
+    </header>
+
+    <!-- About Me Section -->
+    <section id="about" class="glide-in">
+        <h2>About Me</h2>
+        <p>I'm Sania Treasa Cherian, a first-year BTech student passionate about merging creativity with technology. I enjoy designing intuitive UI/UX experiences, sketching interfaces, and building practical solutions with C and Python. With experience in mini projects, I'm eager to grow and contribute to impactful tech solutions.</p>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="glide-in">
+        <h2>Skills</h2>
+        <div class="skill-box">UI/UX Design</div>
+        <div class="skill-box">Sketching</div>
+        <div class="skill-box">C Programming</div>
+        <div class="skill-box">Python</div>
+        <div class="skill-box">Team Projects</div>
+        <div class="skill-box">Problem Solving</div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="glide-in">
+        <h2>Let's Connect</h2>
+        <p>I'm always open to new opportunities, collaborations, and learning experiences. Reach out via email or connect on LinkedIn.</p>
+        <a href="mailto:sylvie.storm@example.com" class="contact-link">Email Me</a>
+        <a href="https://linkedin.com/in/sylviestorm" class="contact-link" target="_blank">LinkedIn</a>
+    </section>
+
+    <script>
+        // Custom Cursor Following with Delay
+        const cursorDot = document.getElementById('cursorDot');
+
+        document.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        // Staggered Glide-in Animations
+        const glideElements = document.querySelectorAll('.glide-in');
+        glideElements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        // Replace Batman image if needed (currently using placeholder)
+        // For real Batman image, update the background-image in CSS with a URL like: url('https://example.com/batman.jpg')
+    </script>
+</body>
+</html>
